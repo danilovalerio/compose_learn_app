@@ -3,12 +3,16 @@ package com.example.composelearnapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composelearnapp.ui.theme.ComposeLearnAppTheme
 
@@ -32,9 +36,19 @@ class MainActivity : ComponentActivity() {
 data class Message(val author: String, val body: String)
 
 @Composable
-fun MessageCard(msg: Message){
-    Text(text = msg.author)
-    Text(text = msg.body)
+fun MessageCard(msg: Message) {
+    Row {
+        Image(
+            painter = painterResource(id = R.drawable.robot2),
+            contentDescription = "Imagem de perfil para contato"
+        )
+
+        Column {
+            Text(text = msg.author)
+            Text(text = msg.body)
+        }
+    }
+
 }
 
 @Composable
