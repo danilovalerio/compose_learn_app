@@ -22,11 +22,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    MessageCard(Message("Android", "Jetpack Compose"))
                 }
             }
         }
     }
+}
+
+data class Message(val author: String, val body: String)
+
+@Composable
+fun MessageCard(msg: Message){
+    Text(text = msg.author)
+    Text(text = msg.body)
 }
 
 @Composable
@@ -41,6 +49,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ComposeLearnAppTheme {
-        Greeting("Android")
+        MessageCard(
+            msg = Message(
+                "Fulano de Tal",
+                "Veja como é legal o Jetpack Compose, muito bom!"
+            )
+        )
     }
 }
