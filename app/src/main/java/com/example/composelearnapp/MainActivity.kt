@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -53,16 +54,28 @@ fun MessageCard(msg: Message) {
                 //configura o tamanho da imagem para 40 dp e recorda em forma de circulo
                 .size(40.dp)
                 .clip(CircleShape)
+                .border(
+                    1.5.dp, MaterialTheme.colorScheme.secondary,
+                    CircleShape
+                )
+
         )
 
         //adiciona um space horizontal entre a image e a coluna dos textos
         Spacer(modifier = Modifier.width(8.dp))
 
         Column {
-            Text(text = msg.author)
+            Text(
+                text = msg.author,
+                color = MaterialTheme.colorScheme.secondary,
+                style = MaterialTheme.typography.titleMedium
+            )
             //adiciona um espaço vertical entre autor e conteúdo
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = msg.body)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = msg.body,
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 
