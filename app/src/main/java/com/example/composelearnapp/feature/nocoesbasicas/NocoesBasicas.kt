@@ -37,7 +37,23 @@ class NocoesBasicas : ComponentActivity() {
 }
 
 @Composable
-fun MyApp(
+fun MyApp(modifier: Modifier) {
+
+    var shouldShowOnboarding by remember {
+        mutableStateOf(true)
+    }
+
+    Surface(modifier) {
+        if (shouldShowOnboarding) {
+            OnboardingScreen()
+        } else {
+            Saudacoes()
+        }
+    }
+}
+
+@Composable
+private fun Saudacoes(
     modifier: Modifier = Modifier,
     nomes: List<String> = listOf("World", "Compose")
 ) {
@@ -47,14 +63,14 @@ fun MyApp(
     ) {
         Column(modifier = modifier.padding(vertical = 4.dp)) {
             for (name in nomes) {
-                Saudacoes(name = name)
+                Saudacao(name = name)
             }
         }
     }
 }
 
 @Composable
-private fun Saudacoes(name: String) {
+private fun Saudacao(name: String) {
     //Remember protege o componente contra a recomposição permanecendo o estado
     val expanded = remember { mutableStateOf(false) }
     val extraPadding = if (expanded.value) 48.dp else 0.dp
@@ -87,7 +103,7 @@ private fun Saudacoes(name: String) {
 @Composable
 private fun DefaultPreview() {
     ComposeLearnAppTheme {
-        MyApp()
+        Saudacoes()
     }
 }
 
@@ -112,8 +128,16 @@ fun OnboardingScreen(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true, widthDp = 320, heightDp = 320)
 @Composable
-fun OnboardingPreview(){
+fun OnboardingPreview() {
     ComposeLearnAppTheme {
         OnboardingScreen()
+    }
+}
+
+@Preview
+@Composable
+fun MyAppPreview() {
+    ComposeLearnAppTheme() {
+        MyApp(Modifier.fillMaxSize())
     }
 }
