@@ -1,5 +1,6 @@
 package com.example.composelearnapp.feature.nocoesbasicas
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -119,6 +120,12 @@ private fun Saudacao(name: String) {
     }
 }
 
+@Preview(
+    showBackground = true,
+    widthDp = 230,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "Dark"
+)
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 private fun DefaultPreview() {
