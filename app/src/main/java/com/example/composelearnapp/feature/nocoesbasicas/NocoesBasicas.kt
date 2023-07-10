@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -27,27 +28,35 @@ class NocoesBasicas : ComponentActivity() {
 }
 
 @Composable
-private fun MyApp(modifier: Modifier = Modifier) {
+fun MyApp(
+    modifier: Modifier = Modifier,
+    nomes: List<String> = listOf("World", "Compose")
+) {
     Surface(
         modifier = modifier,
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colorScheme.background,
     ) {
-        Saudacoes(name = "Joao Zé Zinho da Silva")
+        Column(modifier = modifier.padding(vertical = 4.dp)) {
+            for (name in nomes) {
+                Saudacoes(name = name)
+            }
+        }
     }
 }
 
 @Composable
 private fun Saudacoes(name: String) {
-    Surface(color = MaterialTheme.colorScheme.primary) {
+    Surface(color = MaterialTheme.colorScheme.primary,
+    modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
         // Column, Row e Box são os 3 elementos básicos de layout no compose.
-        Column(modifier = Modifier.padding(24.dp)) {
+        Column(modifier = Modifier.fillMaxWidth().padding(24.dp)) {
             Text(text = "Hello, ")
             Text(text = name)
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 320)
 @Composable
 private fun DefaultPreview() {
     ComposeLearnAppTheme {
