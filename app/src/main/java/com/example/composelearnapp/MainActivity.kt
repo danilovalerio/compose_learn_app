@@ -80,11 +80,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ComposeLearnAppTheme {
-        MessageCard(
-            msg = Message(
-                "Fulano de Tal",
-                "Veja como é legal o Jetpack Compose, muito bom!"
+        Surface {
+            MessageCard(
+                msg = Message(
+                    "Fulano de Tal",
+                    "Veja como é legal o Jetpack Compose, muito bom!"
+                )
             )
-        )
+        }
     }
 }
