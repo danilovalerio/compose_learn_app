@@ -39,6 +39,12 @@ private fun MyApp(modifier: Modifier = Modifier) {
 private fun Saudacoes(name: String) {
     Surface(color = MaterialTheme.colorScheme.primary) {
         Text(text = "Hello $name", modifier = Modifier.padding(24.dp))
-
+    }
+}
+@Preview(showBackground = true)
+@Composable
+private fun DefaultPreview(){
+    ComposeLearnAppTheme {
+        MyApp()
     }
 }
