@@ -45,7 +45,7 @@ fun MyApp(modifier: Modifier) {
 
     Surface(modifier) {
         if (shouldShowOnboarding) {
-            OnboardingScreen()
+            OnboardingScreen(onContinueClicked = {shouldShowOnboarding = false})
         } else {
             Saudacoes()
         }
@@ -108,8 +108,11 @@ private fun DefaultPreview() {
 }
 
 @Composable
-fun OnboardingScreen(modifier: Modifier = Modifier) {
-    // TODO: This state should be hoisted
+fun OnboardingScreen(
+    // FUNÇÃO DE CALLBACK para propagar a mudanca de estado
+    onContinueClicked: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     var shouldShowOnboarding by remember { mutableStateOf(true) }
 
     Column(
@@ -120,7 +123,7 @@ fun OnboardingScreen(modifier: Modifier = Modifier) {
         Text(text = "Codelab Basics Compose")
         Button(
             modifier = Modifier.padding(vertical = 24.dp),
-            onClick = { shouldShowOnboarding = false }) {
+            onClick = onContinueClicked) {
             Text(text = "Continue")
         }
     }
@@ -130,7 +133,7 @@ fun OnboardingScreen(modifier: Modifier = Modifier) {
 @Composable
 fun OnboardingPreview() {
     ComposeLearnAppTheme {
-        OnboardingScreen()
+        OnboardingScreen(onContinueClicked = {})
     }
 }
 
