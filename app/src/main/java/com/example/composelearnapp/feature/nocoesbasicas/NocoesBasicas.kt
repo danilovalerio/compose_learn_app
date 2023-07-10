@@ -52,6 +52,7 @@ fun MyApp(
 private fun Saudacoes(name: String) {
     //Remember protege o componente contra a recomposição permanecendo o estado
     val expanded = remember { mutableStateOf(false) }
+    val extraPadding = if (expanded.value) 48.dp else 0.dp
 
     Surface(color = MaterialTheme.colorScheme.primary,
     modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
@@ -60,7 +61,7 @@ private fun Saudacoes(name: String) {
             Column(modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth()
-                .padding(24.dp)) {
+                .padding(bottom = extraPadding)) {
                 Text(text = "Hello, ")
                 Text(text = name)
             }
