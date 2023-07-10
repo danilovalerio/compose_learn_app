@@ -3,7 +3,9 @@ package com.example.composelearnapp.feature.nocoesbasicas
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -86,7 +88,11 @@ private fun Saudacao(name: String) {
     //Remember protege o componente contra a recomposição permanecendo o estado
     val expanded = remember { mutableStateOf(false) }
     val extraPadding by animateDpAsState(
-        if (expanded.value) 48.dp else 0.dp
+        if (expanded.value) 48.dp else 0.dp,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
     )
 
     Surface(
