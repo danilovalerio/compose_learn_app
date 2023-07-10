@@ -72,10 +72,18 @@ fun MessageCard(msg: Message) {
             )
             //adiciona um espaço vertical entre autor e conteúdo
             Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = msg.body,
-                style = MaterialTheme.typography.bodyMedium
-            )
+
+            Surface(
+                shape = MaterialTheme.shapes.medium,
+                tonalElevation = 1.dp
+            ) {
+                Text(
+                    text = msg.body,
+                    modifier = Modifier.padding(4.dp),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+
+            }
         }
     }
 
