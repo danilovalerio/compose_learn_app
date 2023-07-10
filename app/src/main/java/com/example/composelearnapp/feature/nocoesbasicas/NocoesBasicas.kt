@@ -13,6 +13,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,6 +50,9 @@ fun MyApp(
 
 @Composable
 private fun Saudacoes(name: String) {
+    //Remember protege o componente contra a recomposição permanecendo o estado
+    val expanded = remember { mutableStateOf(false) }
+
     Surface(color = MaterialTheme.colorScheme.primary,
     modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
         Row(modifier = Modifier.padding(24.dp)) {
@@ -60,12 +65,11 @@ private fun Saudacoes(name: String) {
                 Text(text = name)
             }
             ElevatedButton(
-                onClick = { /*TODO*/ }
+                onClick = { expanded.value = !expanded.value },
             ) {
-                Text(text = "Show more")
+                Text(if (expanded.value) "Show less" else "Show more")
             }
         }
-
     }
 }
 
