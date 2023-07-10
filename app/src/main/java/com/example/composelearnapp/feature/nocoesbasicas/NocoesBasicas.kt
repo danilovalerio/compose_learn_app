@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
@@ -55,15 +57,23 @@ fun MyApp(modifier: Modifier) {
 @Composable
 private fun Saudacoes(
     modifier: Modifier = Modifier,
-    nomes: List<String> = listOf("World", "Compose")
+    //nomes: List<String> = listOf("World", "Compose")
+    nomes: List<String> = List(1000) { "$it" }
 ) {
     Surface(
         modifier = modifier,
         color = MaterialTheme.colorScheme.background,
     ) {
-        Column(modifier = modifier.padding(vertical = 4.dp)) {
-            for (name in nomes) {
-                Saudacao(name = name)
+        /**
+         * LazyColumn e LazyRow é SIMILAR AO RECYCLERVIEW
+         * Eles não recila os filhos como recycler, ela emite
+         * novas composições à medida que rolamos, e te um uma boa
+         * performance já que a emissão de composições é relativamente mais
+         * barata em comparação a instanciações de Views do Android
+         */
+        LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
+            items(items = nomes) {nome ->
+                Saudacao(name = nome)
             }
         }
     }
